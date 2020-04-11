@@ -1,4 +1,6 @@
 # vue-todolist-test
+This is my very first try of *Vue.js*, and you can never go wrong with a todo app.
+
 
 ## Project setup
 ```
