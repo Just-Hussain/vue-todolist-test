@@ -61,19 +61,24 @@ export default {
             nextTodoId: 1,
             todos: [
                 {
-                    id: -1,
+                    id: -2,
                     text: 'test1',
                     isDone: false
                 },
                 {
-                    id: -0,
+                    id: -1,
                     text: 'test2',
                     isDone: false
+                },
+                {
+                    id: 0,
+                    text: 'test3',
+                    isDone: true
                 }
             ]
         }
     },
-    
+
     methods: {
         addTodo() {
             if (this.todoText) {
