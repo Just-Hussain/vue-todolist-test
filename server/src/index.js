@@ -3,6 +3,8 @@
 
     // express is what handles all the HTTP work
     const express = require('express')
+    // cors allows for sccess from remote hosts
+    const cors = require('cors')
 
     // mysql promise wrapper
     const mysql = require('promise-mysql')
@@ -12,8 +14,14 @@
     // and all configs too
     const config = require('./config/config')
 
+    var bodyParser = require('body-parser')
+
     // init express
     let app = express()
+
+    // use cors
+   app.options('*', cors())
+   app.use(bodyParser.json())
 
     // config for mysql connection
     // create connection, connecting is done with the first query

@@ -1,7 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <TodoList></TodoList>
+
+    <TheHeader></TheHeader>
+
+    <router-link
+      :to="{name: 'home'}"
+    >
+      <img  
+      alt="Vue logo" 
+      src="./assets/logo.png"
+      >
+    </router-link>
+          
+    <router-view></router-view>
+
     <footer>
       <a 
         class="fab fa-twitter" 
@@ -16,13 +28,14 @@
 
 <script>
 import TodoList from './components/TodoList'
-
+import TheHeader from './components/TheHeader'
+import router from './router/index'
 
 export default {
   name: 'App',
 
   components: {
-    TodoList
+    TodoList, TheHeader
   },
 
   data: function() {

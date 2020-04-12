@@ -6,16 +6,41 @@
 //  -> req holds the data in req.body
 //  -> to send to the port use res.send
 module.exports = (app, conn) => {
-    app.get('/test', (req, res) => {
+    app.get('/todo', (req, res) => {
         
-        (async () => {
+        (async (res) => {
             let arr = await conn.query('SELECT * FROM Todo')
             console.log(arr[0]);
-        })()
+            res.set({
+                "Access-Control-Allow-Origin" : "*", 
+                "Access-Control-Allow-Credentials" : true 
+            })
+            res.send(arr)
+        })(res)
         
         
-        res.send('Hola boi')
+        //res.send('Hola boi')
         console.log(`hola sent + req: ${req.body} + res ${res.body}`);
-        
+    })
+
+    app.post('/todo', (req, res) => {
+        console.log('??');
+        (async (req, res) => {
+            console.log(req.body);
+            res.set({
+                "Access-Control-Allow-Origin" : "*", 
+                "Access-Control-Allow-Credentials" : true 
+            })
+
+            conn.query('INSERT INTO Todo SET ?', req.body)
+            .then(suc => {
+                console.log(suc);
+                res.status(200).send('all well')
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).send('not well')
+            })
+        })(req, res)
     })
 }
