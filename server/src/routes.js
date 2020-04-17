@@ -11,10 +11,7 @@ module.exports = (app, conn) => {
         (async (res) => {
             let arr = await conn.query('SELECT * FROM Todo')
             console.log(arr[0]);
-            res.set({
-                "Access-Control-Allow-Origin" : "*", 
-                "Access-Control-Allow-Credentials" : true 
-            })
+
             res.send(arr)
         })(res)
         
@@ -27,10 +24,6 @@ module.exports = (app, conn) => {
         console.log('??');
         (async (req, res) => {
             console.log(req.body);
-            res.set({
-                "Access-Control-Allow-Origin" : "*", 
-                "Access-Control-Allow-Credentials" : true 
-            })
 
             conn.query('INSERT INTO Todo SET ?', req.body)
             .then(suc => {
